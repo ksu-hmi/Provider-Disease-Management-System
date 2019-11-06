@@ -3,63 +3,53 @@ import pickle
 import os
 class Hospital:
     def _init_(self):
-        self.sno=0
+        self.idno=0
         self.name=' '
         self.age=0
         self.sex=""
-        self.email=" "
         self.fname=" "
         self.address=''
         self.city=''
-        self.state=''
+        self.country=''
         self.height=0
         self.weight=0
         self.doctor=''
         self.med=''
-        self.bill=0
-        self.paymethod=''
         self.pno=0
         self.bgroup=''
         self.dname=''
 
     def Input(self):
-        self.sno=input("Enter Serial number:")
+        self.idno=input("Enter National ID number:")
         self.name=raw_input("Enter Patinet's Name:")
         self.age=input("Enter Patinet's Age:")
         self.sex=raw_input("Enter Patinet's Sex (Male/Female):")
         self.height=input("Enter Patinet's Height:")
         self.weight=input("Enter Patinet's Weight(In Kgs):")
         self.bgroup=raw_input("Enter Patient's Blood Group:")
-        self.fname=raw_input("Enter Fathers Name:")
         self.address=raw_input("Enter Address:")
         self.city=raw_input("Enter City:")
-        self.state=raw_input("Enter State:")
+        self.country=raw_input("Enter Country:")
         self.pno=input("Enter Phone number:")
         self.email=raw_input("Enter E-Mail:")
         self.doctor=raw_input("Enter Doctor's Name:")
         self.dname=raw_input("Enter Disease Name:")
         self.med=raw_input("Enter Prescribed Medicine:")
-        self.bill=input("Enter Bill Amount: Rs.")
-        self.paymethod=raw_input("Enter Payment Method(Cash/Cheque/Card):")
     def Output(self):
-        print ("SERIAL NUMBER:-"),self.sno
+        print ("NATIONAL ID NUMBER:-"),self.idno
         print ("PATIENT'S NAME:-"),self.name
         print ("PATIENT'S AGE:-"),self.age
         print ("PATIENT'S SEX:-"),self.sex
         print ("PATIENT'S HEIGHT:-"),self.height
         print ("PATIENT'S WEIGHT:-"),self.weight
         print ("PATIENT'S BLOOD GROUP:-"),self.bgroup
-        print ("FATHERS NAME:-"),self.fname
         print ("ADDRESS:-"),self.address
         print ("CITY:-"),self.city
-        print ("STATE:-"),self.state
+        print ("COUNTRY:-"),self.country
         print ("CONTACT NUMBER:-"),self.pno
-        print ("E-MAIL ADDRESS:-"),self.email
         print ("DISEASE NAME:-"),self.dname
         print ("DOCTOR'S NAME:-"),self.doctor
         print ("PRESCRIBED MEDICINES:-"),self.med
-        print ("BILL AMOUNT:-"),self.bill
-        print ("PAYMENT METHOD:-"),self.paymethod
 
 #FUNCTION
 import time
@@ -249,18 +239,6 @@ def SearchDoctor(n):                         #to search on the basis of Doctors 
                 print ("               |  ... RECORD... DOES... NOT... EXIST ...  | " )
                 print ("               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ " )
             fin.close()
-
-def SearchPayment(n):                          #to search on the basis of Payment Method
-    fin=open("Hospital1.DAT","rb")
-    ob=Hospital()
-    flag=False
-    try:
-        print("\nHospital Details are:")
-        while True:
-            ob=pickle.load(fin)
-            if ob.paymethod==n:
-                ob.Output()
-                flag=True
                 
     except EOFError:
             if not flag:
@@ -305,10 +283,6 @@ def ModiHospital(b,a):#to modify details
                     a=raw_input("ENTER NEW PATIENT'S BLOOD GROUP:-->")
                     ob.bgroup=a
                     pickle.dump(ob,fout)
-                elif n==7:
-                    a=raw_input("ENTER NEW FATHERS NAME:-->")
-                    ob.fname=a
-                    pickle.dump(ob,fout)
                 elif n==8:
                     a=raw_input("ENTER NEW ADDRESS:-->")
                     ob.address=a
@@ -318,16 +292,12 @@ def ModiHospital(b,a):#to modify details
                     ob.city=a
                     pickle.dump(ob,fout)
                 elif n==10:
-                    a=raw_input("ENTER NEW STATE:-->")
-                    ob.state=a
+                    a=raw_input("ENTER NEW COUNTRY:-->")
+                    ob. country=a
                     pickle.dump(ob,fout)
                 elif n==11:
                     a=input("ENTER NEW CONTACT NUMBER:-->")
                     ob.pno=a
-                    pickle.dump(ob,fout)
-                elif n==12:
-                    a=raw_input("ENTER NEW E-MAIL ADDRESS:-->")
-                    ob.email=a
                     pickle.dump(ob,fout)
                 elif n==13:
                     a=raw_input("ENTER NEW DISEASE NAME:-->")
@@ -341,16 +311,7 @@ def ModiHospital(b,a):#to modify details
                     a=raw_input("ENTER NEW PRESCRIBED MEDICINE:-->")
                     ob.med=a
                     pickle.dump(ob,fout)
-                elif n==16:
-                    a=input("ENTER NEW BILL AMOUNT:--> Rs.")
-                    ob.bill=a
-                    pickle.dump(ob,fout)
                 elif n==17:
-                    a=raw_input("ENTER NEW PAYMENT METHOD(Cash\Cheque\Card):-->")
-                    ob.paymethod=a
-                    pickle.dump(ob,fout)
-                
-                elif n==18:
                     print ("__________________ENTER THE NEW DETAILS__________________")
                     ob.Input() 
                     pickle.dump(ob,fout)
@@ -397,11 +358,11 @@ def DelHospital(n):
 #MAIN PROGRAM
 while True:
     print("\n")
-    print("Simple Hospital Management System \n")
+    print("Simple Disease Tracking System System \n")
     #print("\n")
-    print("1.WRITE RECORD\n2.SHOW ALL RECORDS\n3.SEARCH BY SERIAL NUMBER")
+    print("1.WRITE RECORD\n2.SHOW ALL RECORDS\n3.SEARCH BY NATIONAL ID NUMBER")
     print("4.SEARCH BY CONTACT NUMBER\n5.SEARCH BY BLOOD GROUP\n6.SEARCH BY AGE\n7.SEARCH BY SEX")
-    print("8.SEARCH BY DISEASE NAME\n9.SEARCH BY DOCTORS NAME\n10.SEARCH BY PAYMENT METHOD\n11.SEARCH BY E-MAIL")
+    print("8.SEARCH BY DISEASE NAME\n9.SEARCH BY DOCTORS NAME")
     print("12.MODIFY RECORD\n13.DELETE RECORD\n14.EXIT")
     ch=input("\nPLEASE ENTER YOUR CHOICE:--")
     if ch==1:
@@ -409,7 +370,7 @@ while True:
     elif ch==2:
         ReadHospital()
     elif ch==3:
-        n=input("PLEASE ENTER SERIAL NUMBER TO SEARCH:--")
+        n=input("PLEASE ENTER NATIONAL ID NUMBER TO SEARCH:--")
         SearchHospitalSno(n)
     elif ch==4:
         n=input("PLEASE ENTER CONTACT NUMBER TO SEARCH:--")
@@ -430,13 +391,7 @@ while True:
         n=raw_input("PLEASE ENTER DOCTORS NAME TO SEARCH:--")
         SearchDoctor(n)
     elif ch==10:
-        n=raw_input("PLEASE ENTER PAYMENT METHOD TO SEARCH:--")
-        SearchPayment(n)
-    elif ch==11:
-        n=raw_input("PLEASE ENTER E-MAIL ADDRESS TO SEARCH:--")
-        SearchHospitalemail(n)
-    elif ch==12:
-        m=input("ENTER SERIAL NUMBER TO MODIFY:--")
+        m=input("ENTER NATIONAL ID NUMBER TO MODIFY:--")
         print ("\n")
         print ("____________________________________________ " )
         print ("|  ......... ENTER YOUR CHOICE ..........  | " )
@@ -453,21 +408,18 @@ while True:
         print ("7.FATHERS NAME:-")
         print ("8.ADDRESS:-")
         print ("9.CITY:-")
-        print ("10.STATE:-")
+        print ("10.COUNTRY:-")
         print ("11.CONTACT NUMBER:-")
-        print ("12.E-MAIL ADDRESS:-")
-        print ("13.DISEASE NAME:-")
-        print ("14.DOCTOR'S NAME:-")
-        print ("15.PRESCRIBED MEDICINES:-")
-        print ("16.BILL AMOUNT:-")
-        print ("17.PAYMENT METHOD:-")
-        print ("18.ALL")
+        print ("12.DISEASE NAME:-")
+        print ("13.DOCTOR'S NAME:-")
+        print ("14.PRESCRIBED MEDICINES:-")
+        print ("15.ALL")
         n=input("::--")
         ModiHospital(m,n)
-    elif ch==13:
-        n=input("ENTER SERIAL NUMBER TO DELETE:-")
+    elif ch==11:
+        n=input("ENTER NATIONAL ID NUMBER TO DELETE:-")
         DelHospital(n)
-    elif ch==14:
+    elif ch==12:
         print ("\n")
         print ("EXITING"),
         time.sleep(.8)
@@ -493,8 +445,7 @@ while True:
         print ("."),
         time.sleep(.6)
         print (".")
-        print("\n\n\n~~~~~~~~~~~~~~~~~~~~WRONG CHOICE!!!~~~~~~~~~~~~~~~~~~~\n\n\n")
-        
+        print("\n\n\n~~~~~~~~~~~~~~~~~~~~WRONG CHOICE!!!~~~~~~~~~~~~~~~~~~~\n\n\n") 
 
         
 

@@ -7,6 +7,7 @@ Analyze existing codes, including https://code-projects.org/simple-hospital-mana
 Upload existing code and run – Done
 Analyze the results for errors or opportunities – Done
 Update existing code with project variables – Done/Actively Updating
+Analyze the Hospital1.DAT file to see where data is coming from - Done
 Create database/data file that the code should be referencing when tracking the diseases 
 Update code with database/file code
 Determine if additional updates need to be made to the code

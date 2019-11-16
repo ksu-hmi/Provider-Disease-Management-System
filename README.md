@@ -1,2 +1,2 @@
-# Provider-Disease-Management-System
+# Provider-Disease-Tracking-System
 This project will consist of an user-friendly disease management code that allows providers, physicians, and other caregivers in third-world countries to successfully track and maintain data for patients who have acquired prominent diseases in areas where technology and resources are limited. The primary diseases that this management system is going to focus on are Malaria, HIV, Ebola, and Tuberculosis. 
